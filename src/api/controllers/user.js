@@ -81,7 +81,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     const userDeleted = await User.findByIdAndDelete(id);
-    deleteFile(playerDeleted.img);
+    deleteFile(userDeleted.img);
     return res.status(200).json({
       mensaje: 'Este usuario ha sido eliminado',
       userDeleted

@@ -6,7 +6,7 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-      folder: 'Proyecto 8',
+      folder: 'Proyecto-8',
       allowedFormats: ['jpg', 'png', 'jpeg', 'gif', 'webp']
    }
 });

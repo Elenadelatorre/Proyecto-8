@@ -13,6 +13,6 @@ playersRouter.get('/position/:position', [isUser], getPlayersByPosition);
 playersRouter.get('/', [isUser], getPlayers);
 playersRouter.post('/', [isUser], upload.single('img'), postPlayer);
 playersRouter.put('/:id', [isAdmin], putPlayer);
-playersRouter.delete('/:id', [isAdmin], deletePlayer);
+playersRouter.delete('/:id', [isUser], deletePlayer);
 
 module.exports = playersRouter;

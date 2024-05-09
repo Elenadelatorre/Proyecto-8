@@ -20,7 +20,7 @@ const postBrand = async (req, res, next) => {
     if (req.file) {
       newBrand.img = req.file.path;
     }
-    
+
     const brandSaved = await newBrand.save();
     return res.status(200).json(brandSaved);
   } catch (error) {
@@ -49,8 +49,9 @@ const putBrand = async (req, res, next) => {
 const deleteBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
+    
     const brandDeleted = await Brand.findByIdAndDelete(id);
-    deleteFile(playerDeleted.img);
+    deleteFile(brandDeleted.img);
     return res.status(200).json(brandDeleted);
   } catch (error) {
     console.log(error);

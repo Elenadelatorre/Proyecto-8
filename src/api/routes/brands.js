@@ -6,6 +6,6 @@ const brandsRouter = require("express").Router();
 brandsRouter.get("/",[isUser], getBrands);
 brandsRouter.post("/",[isUser],upload.single('img'), postBrand);
 brandsRouter.put("/:id",[isAdmin], putBrand);
-brandsRouter.delete("/:id",[isAdmin], deleteBrand); 
+brandsRouter.delete("/:id",[isUser], deleteBrand); 
 
 module.exports = brandsRouter;
