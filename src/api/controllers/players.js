@@ -26,6 +26,11 @@ const getPlayersByPosition = async (req, res, next) => {
 const postPlayer = async (req, res, next) => {
   try {
     const newPlayer = new Player(req.body);
+
+    if (req.file) {
+      newPlayer.img = req.file.path;
+    }
+
     const playerSaved = await newPlayer.save();
     res.status(201).json(playerSaved);
   } catch (error) {
