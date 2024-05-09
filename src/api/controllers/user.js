@@ -1,4 +1,5 @@
 const { generateSign } = require('../../config/jwt');
+const { deleteFile } = require('../../utils/deleteFile');
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
@@ -28,9 +29,9 @@ const register = async (req, res, next) => {
     if (duplicateUser) {
       return res.status(400).json('El usuario ya existe');
     }
-    
+
     if (req.file) {
-      newPlayer.img = req.file.path;
+      newUser.img = req.file.path;
     }
     const userSaved = await newUser.save();
     return res.status(201).json(userSaved);
@@ -80,6 +81,7 @@ const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
     const userDeleted = await User.findByIdAndDelete(id);
+    deleteFile(playerDeleted.img);
     return res.status(200).json({
       mensaje: 'Este usuario ha sido eliminado',
       userDeleted

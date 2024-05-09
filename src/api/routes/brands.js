@@ -4,7 +4,7 @@ const upload = require('../../middlewares/file');
 const brandsRouter = require("express").Router();
 
 brandsRouter.get("/",[isUser], getBrands);
-brandsRouter.post("/",[isAdmin],upload.single('img'), postBrand);
+brandsRouter.post("/",[isUser],upload.single('img'), postBrand);
 brandsRouter.put("/:id",[isAdmin], putBrand);
 brandsRouter.delete("/:id",[isAdmin], deleteBrand); 
 

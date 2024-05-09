@@ -1,3 +1,4 @@
+const { deleteFile } = require('../../utils/deleteFile');
 const Player = require('../models/players');
 
 // GET todos los jugadores:
@@ -60,6 +61,7 @@ const deletePlayer = async (req, res, next) => {
   try {
     const { id } = req.params;
     const playerDeleted = await Player.findByIdAndDelete(id);
+    deleteFile(playerDeleted.img);
     res.status(200).json({ mensaje: 'Jugador eliminado', playerDeleted });
   } catch (error) {
     console.log(error);
