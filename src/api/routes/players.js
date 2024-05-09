@@ -11,7 +11,7 @@ const playersRouter = require('express').Router();
 
 playersRouter.get('/position/:position', [isUser], getPlayersByPosition);
 playersRouter.get('/', [isUser], getPlayers);
-playersRouter.post('/', [isAdmin], upload.single('img'), postPlayer);
+playersRouter.post('/', [isUser], upload.single('img'), postPlayer);
 playersRouter.put('/:id', [isAdmin], putPlayer);
 playersRouter.delete('/:id', [isAdmin], deletePlayer);
 

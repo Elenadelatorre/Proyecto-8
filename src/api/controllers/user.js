@@ -28,7 +28,10 @@ const register = async (req, res, next) => {
     if (duplicateUser) {
       return res.status(400).json('El usuario ya existe');
     }
-
+    
+    if (req.file) {
+      newPlayer.img = req.file.path;
+    }
     const userSaved = await newUser.save();
     return res.status(201).json(userSaved);
   } catch (error) {
