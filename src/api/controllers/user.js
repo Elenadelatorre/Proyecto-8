@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
-    res.status(200).json(users);
+    return res.status(200).json(users);
   } catch (error) {
     console.log(error);
     return res.status(400).json('Error en la petición');
@@ -43,7 +43,7 @@ const login = async (req, res, next) => {
     const user = await User.findOne({ userName: req.body.userName });
 
     if (!user) {
-      return res.status(400).json('El usuario o la contraseña son incorrectos');
+      return res.status(400).json('El usuario no existe');
     }
 
     if (bcrypt.compareSync(req.body.password, user.password)) {
