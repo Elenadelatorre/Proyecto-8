@@ -1,5 +1,5 @@
 const User = require('../api/models/user');
-const { verifySign } = require('../config/jwt');
+const { verifySign } = require('../utils/jwt');
 
 //Usuario normal:
 const isUser = async (req, res, next) => {
