@@ -12,7 +12,7 @@ const playersRouter = require('express').Router();
 playersRouter.get('/position/:position', [isUser], getPlayersByPosition);
 playersRouter.get('/', [isUser], getPlayers);
 playersRouter.post('/', [isUser], uploadPlayers.single('img'), postPlayer);
-playersRouter.put('/:id', [isAdmin], putPlayer);
+playersRouter.put('/:id', [isAdmin], uploadPlayers.single('img'), putPlayer);
 playersRouter.delete('/:id', [isUser], deletePlayer);
 
 module.exports = playersRouter;
