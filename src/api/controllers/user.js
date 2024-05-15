@@ -68,6 +68,13 @@ const putUser = async (req, res, next) => {
     const { id } = req.params;
     const newUser = new User(req.body);
     newUser._id = id;
+
+    if (req.file) {
+      newUser.img = req.file.path;
+
+      const oldUser = await User.findById(id);
+      deleteFile(oldUser.img);
+    }
     const userUpdated = await User.findByIdAndUpdate(id, newUser, {
       new: true
     });

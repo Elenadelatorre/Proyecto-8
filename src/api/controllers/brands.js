@@ -35,6 +35,13 @@ const putBrand = async (req, res, next) => {
     const { id } = req.params;
     const newBrand = new Brand(req.body);
     newBrand._id = id;
+    if (req.file) {
+      newBrand.img = req.file.path;
+
+      const oldBrand = await Brand.findById(id);
+      deleteFile(oldBrand.img);
+    }
+
     const brandUpdated = await Brand.findByIdAndUpdate(id, newBrand, {
       new: true
     });
@@ -49,7 +56,7 @@ const putBrand = async (req, res, next) => {
 const deleteBrand = async (req, res, next) => {
   try {
     const { id } = req.params;
-    
+
     const brandDeleted = await Brand.findByIdAndDelete(id);
     deleteFile(brandDeleted.img);
     return res.status(200).json(brandDeleted);

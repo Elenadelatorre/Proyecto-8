@@ -46,6 +46,12 @@ const putPlayer = async (req, res, next) => {
     const { id } = req.params;
     const newPlayer = new Player(req.body);
     newPlayer._id = id;
+    if (req.file) {
+      newPlayer.img = req.file.path;
+      const oldPlayer = await Player.findById(id);
+      deleteFile(oldPlayer.img);
+    }
+
     const playerUpdated = await Player.findByIdAndUpdate(id, newPlayer, {
       new: true
     });
